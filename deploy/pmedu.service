@@ -1,0 +1,27 @@
+[Unit]
+Description=PM Edu ta'lim platformasi
+After=network.target
+
+[Service]
+Type=simple
+User=pmedu
+Group=pmedu
+WorkingDirectory=/opt/pmedu
+ExecStart=/usr/bin/node /opt/pmedu/server.js
+Restart=always
+RestartSec=3
+Environment=NODE_ENV=production
+# Xavfsizlik cheklovlari
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/pmedu/data
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
